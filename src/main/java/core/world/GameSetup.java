@@ -1,15 +1,15 @@
-package core.worldSetup;
+package core.world;
 
-import core.CharactersSetup.Hero;
+import core.characters.Hero;
 
 import java.util.*;
 
-public class GameSetup implements MapRandomizer, EnemyRandomizer {
+public class GameSetup implements IMapRandomizer, IEnemyRandomizer {
 
-    private static enum Names {
-        DIRTY, SWAMP, ACID, FIRE;
+    private enum Names {
+        DIRTY, SWAMP, ACID, FIRE
     }
-    private List<Room> globalGameMap = new ArrayList<>();
+    private final List<Room> globalGameMap = new ArrayList<>();
     private Hero hero;
 
     public void mapSetup(int n) {
@@ -21,13 +21,12 @@ public class GameSetup implements MapRandomizer, EnemyRandomizer {
         for (int i = 1; i <= n; i++) {
             int randNum = rand.nextInt(names.length);
             globalGameMap.add(new Room(names[randNum].name()));
-            //*System.out.println("Creating Room " + i + " " + names[randNum].name());
         }
         mapRandomizer(this.globalGameMap);
         System.out.println("Map Created");
         enemyRandomizer(this.globalGameMap);
 
-        this.hero = new Hero(100,"Tarnished",20);
+        this.hero = new Hero(100,"Tarnished",40);
         Room startingRoom = globalGameMap.getFirst();
         hero.setStartingRoomId(startingRoom.getId());
         System.out.println("Hero woke up in " + startingRoom.getName() +" Room");

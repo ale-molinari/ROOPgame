@@ -1,5 +1,5 @@
-package core.worldSetup;
-import core.CharactersSetup.Enemy;
+package core.world;
+import core.characters.Enemy;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,13 +7,13 @@ import java.util.List;
 import java.util.UUID;
 
 public class Room {
-    public static enum Direction {
-        NORTH, EAST, SOUTH, WEST;
+    public enum Direction {
+        NORTH, EAST, SOUTH, WEST
     }
-    private HashMap<Direction, UUID> map;
-    private String name;
-    private UUID id;
-    private List<Enemy> enemies = new ArrayList<>();
+    private final HashMap<Direction, UUID> map;
+    private final String name;
+    private final UUID id;
+    private final List<Enemy> enemies = new ArrayList<>();
 
     public Room(String name) {
         this.name = name;
@@ -29,10 +29,6 @@ public class Room {
         return name;
     }
 
-    public List<Enemy> getEnemies(){
-        return enemies;
-    }
-
     public HashMap<Direction, UUID> getMap(){
         return map;
     }
@@ -42,7 +38,7 @@ public class Room {
     }
 
     public boolean hasDirection(Direction direction){
-        return this.map.containsKey(direction);
+        return !this.map.containsKey(direction);
     }
 
     public void addEnemy(Enemy enemy) {
@@ -51,5 +47,13 @@ public class Room {
 
     public void removeEnemy(Enemy enemy) {
         this.enemies.remove(enemy);
+    }
+
+    public boolean hasEnemies(){
+        return !this.enemies.isEmpty();
+    }
+
+    public Enemy getEnemy() {
+        return this.enemies.getFirst();
     }
 }

@@ -1,9 +1,9 @@
-package core.worldSetup;
-import core.CharactersSetup.Enemy;
+package core.world;
+import core.characters.Enemy;
 import java.util.List;
 import java.util.Random;
 
-public interface EnemyRandomizer {
+public interface IEnemyRandomizer {
 
     default void enemyRandomizer(List<Room> rooms) {
         Random rand = new Random();
@@ -12,7 +12,7 @@ public interface EnemyRandomizer {
             if (rand.nextInt(101) < 65) {
                 Enemy goblin = new Enemy(30, "Goblin", 15);
                 currentRoom.addEnemy(goblin);
-            };
+            }
         }
         System.out.println("Populating Done");
     }
