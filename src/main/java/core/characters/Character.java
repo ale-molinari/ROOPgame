@@ -1,9 +1,9 @@
 package core.characters;
 
-public abstract class Character implements IHealthCheck, IChallenge {
+public abstract class Character implements IHealthCheck, IChallenge, ISpecialMove {
     private double life;
     private String name;
-    private final double attack;
+    private double attack;
     public static final double[] MULTIPLIERS = new double[]{0.0, 0.15, 0.20, 0.25, 0.30, 0.40};
 
     public Character(double life, String name, double attack) {
@@ -20,11 +20,8 @@ public abstract class Character implements IHealthCheck, IChallenge {
     public double getAttack(){
         return attack;
     }
-    public void setLife(double life) {
-        this.life = life;
-    }
-    public void setName(String name) {
-        this.name = name;
+    public void setAttack(double attack) {
+        this.attack = attack;
     }
 
     @Override

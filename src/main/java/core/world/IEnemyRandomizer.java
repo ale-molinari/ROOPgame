@@ -10,7 +10,7 @@ public interface IEnemyRandomizer {
         for(int i = 1; i < rooms.size(); i++) {
             Room currentRoom = rooms.get(i);
             if (rand.nextInt(101) < 65) {
-                Enemy goblin = new Enemy(30, "Goblin", 15);
+                Enemy goblin = new Enemy(50, "Goblin", 15);
                 currentRoom.addEnemy(goblin);
             }
         }

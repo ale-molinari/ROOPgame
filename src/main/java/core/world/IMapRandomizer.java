@@ -37,7 +37,6 @@ public interface IMapRandomizer {
                     targetRoom.addDirection(returnDirection, currentRoom.getId());
 
                     connected = true;
-                    //*System.out.println("Room " + currentRoom.getId() + " has been added to room " + targetRoom.getId());
                 }
             }
         }

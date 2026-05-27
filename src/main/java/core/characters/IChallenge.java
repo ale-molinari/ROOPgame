@@ -20,7 +20,7 @@ public interface IChallenge {
             double multiplier = MULTIPLIERS[randNum - 1];
             double damageAmount = getAttack() * multiplier;
             p.takeDamage(damageAmount);
-            System.out.println("Dice: " + randNum + ". " + damageAmount + " damages inflicted. " + p.getName() + " has now " + p.getLife() + " HP rimanenti.");
+            System.out.println("Dice: " + randNum + ". " + damageAmount + " damages inflicted. " + p.getName() + " has now " + p.getLife() + " HP.");
             if (p.isDead())
                 System.out.println(p.getName() + " is dead");
         }

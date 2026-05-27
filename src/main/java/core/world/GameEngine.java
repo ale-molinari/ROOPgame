@@ -3,6 +3,7 @@ package core.world;
 import core.characters.CombatManager;
 import core.characters.Enemy;
 import core.characters.Hero;
+import core.characters.MoveType;
 
 import java.util.HashMap;
 import java.util.List;
@@ -14,6 +15,9 @@ public class GameEngine {
     public GameEngine(){}
 
     public void startGame() {
+
+        //TODO: base game mechanics. Planning to refactor the GameEngine to split responsibilities.
+
         Scanner scanner = new Scanner(System.in);
 
         GameSetup gameSetup = new GameSetup();
@@ -36,21 +40,23 @@ public class GameEngine {
                 System.out.println("Battle started");
 
                 while (currentRoom.hasEnemies() && !hero.isDead()) {
-                    System.out.println("(1) Battle Him");
+                    System.out.println("(1) Base Attack");
+                    System.out.println("(2) Special Move");
                     String choice = scanner.nextLine();
 
                     if (choice.equals("1")) {
-                        CombatManager.executeBattle(hero, enemy, currentRoom);
+                        CombatManager.executeBattle(hero, enemy, currentRoom, MoveType.BASE);
+                    } else if (choice.equals("2")) {
+                        CombatManager.executeBattle(hero, enemy, currentRoom, MoveType.SPECIAL);
                     } else {
                         System.out.println("The goblin looks at you confused");
                     }
-
                     if (hero.isDead()) {
                         System.out.println("GAME OVER");
                         isAlive = false;
                     }
                 }
-            }else {
+            } else {
                 System.out.println("\nThe Room is empty");
                 HashMap<Room.Direction, UUID> exits = currentRoom.getMap();
 
